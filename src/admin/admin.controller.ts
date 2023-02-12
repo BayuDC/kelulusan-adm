@@ -15,10 +15,14 @@ import {
 import { parse } from 'papaparse';
 import { AppService } from '../app.service';
 import { UpdateTimeDto } from './dto/update-time.dto';
+import { PrismaService } from 'src/prisma/prisma.service';
 
 @Controller('admin')
 export class AdminController {
-  constructor(private appService: AppService) {}
+  constructor(
+    private appService: AppService,
+    private prismaService: PrismaService,
+  ) {}
 
   @Get()
   @Render('admin.hbs')
