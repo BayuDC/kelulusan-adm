@@ -5,6 +5,7 @@ import {
   FastifyAdapter,
 } from '@nestjs/platform-fastify';
 import fastyfyMultipart from '@fastify/multipart';
+import Handlebars from 'handlebars';
 import { AppModule } from './app.module';
 import { join } from 'path';
 
@@ -13,6 +14,10 @@ async function bootstrap() {
     AppModule,
     new FastifyAdapter(),
   );
+  const hbs = Handlebars.create();
+  hbs.registerHelper('inc', (value) => {
+    return value + 1;
+  });
 
   app.useStaticAssets({
     root: join(__dirname, '..', 'public'),
@@ -20,7 +25,7 @@ async function bootstrap() {
   });
   app.setViewEngine({
     engine: {
-      handlebars: require('handlebars'),
+      handlebars: hbs,
     },
     templates: join(__dirname, '..', 'views'),
   });

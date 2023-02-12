@@ -54,6 +54,20 @@
           </tr>
         </thead>
         <tbody>
+          {{#each students}}
+          <tr>
+            <td>{{inc @index }}</td>
+            <td>{{ this.nis }}</td>
+            <td>{{ this.name }}</td>
+            <td>
+              {{#if this.graduate}}
+              <span class="tag is-success">Lulus</span>
+              {{else}}
+              <span class="tag is-danger">Tidak Lulus</span>
+              {{/if}}
+            </td>
+          </tr>
+          {{/each }}
         </tbody>
       </table>
     </div>

@@ -26,9 +26,10 @@ export class AdminController {
 
   @Get()
   @Render('admin.hbs')
-  index() {
+  async index() {
     return {
       date: this.appService.getConfig().date,
+      students: await this.prismaService.student.findMany(),
     };
   }
 
