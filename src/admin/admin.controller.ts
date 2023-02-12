@@ -40,9 +40,25 @@ export class AdminController {
 
   @Post('/who')
   @UseInterceptors(FileInterceptor('file'))
-  updateStudents(@UploadedFile() file: MemoryStorageFile) {
+  @Redirect('/admin')
+  async updateStudents(@UploadedFile() file: MemoryStorageFile) {
     const { data: students } = parse(file.buffer.toString('utf-8'));
+    const transactions: any[] = [
+      this.prismaService.student.deleteMany({ where: {} }),
+    ];
 
-    return { nice: 'Nice' };
+    for (const student of students) {
+      transactions.push(
+        this.prismaService.student.create({
+          data: {
+            nis: student[0],
+            name: student[1],
+            graduate: student[2] == '1',
+          },
+        }),
+      );
+    }
+
+    await this.prismaService.$transaction(transactions);
   }
 }
