@@ -1,23 +1,22 @@
-import { Body, Controller, Get, Post, Render } from '@nestjs/common';
-import { AdminService } from './admin.service';
+import { Body, Controller, Get, Post, Redirect, Render } from '@nestjs/common';
+import { AppService } from '../app.service';
 import { UpdateTimeDto } from './dto/update-time.dto';
 
 @Controller('admin')
 export class AdminController {
-  constructor(private adminService: AdminService) {}
+  constructor(private appService: AppService) {}
 
   @Get()
   @Render('admin.hbs')
   index() {
-    return {};
+    return {
+      date: this.appService.getConfig().date,
+    };
   }
 
   @Post('/when')
-  @Render('admin.hbs')
+  @Redirect('/admin')
   async updateDate(@Body() body: UpdateTimeDto) {
-    const date = new Date(body.date);
-    await this.adminService.updateDate(date);
-
-    return {};
+    this.appService.setConfig({ date: body.date });
   }
 }
