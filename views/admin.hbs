@@ -1,21 +1,64 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Hello Bulma!</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-  </head>
-  <body>
-  <section class="section">
-    <div class="container">
-      <h1 class="title">
-        Hello World
-      </h1>
-      <p class="subtitle">
-        My first website with <strong>Bulma</strong>!
-      </p>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hello Bulma!</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+</head>
+
+<body>
+  <div class="has-background-danger">
+    <div class="container px-2 py-2">
+      <div class="block my-4">
+        <h1 class="title has-text-white has-text-centered has-text-weight-bold">Admin Kelulusan SMKTHP</h1>
+      </div>
     </div>
-  </section>
-  </body>
+  </div>
+  <div class="container mt-6 px-2 p-4">
+    <div class="block">
+      <h2 class="subtitle is-4 has-text-weight-bold">Konfigurasi</h2>
+      <div class="columns">
+        <div class="column is-one-third">
+          <form action="" class="is-flex">
+            <input class="input" type="datetime-local">
+            <button class="button is-link">Simpan</button>
+          </form>
+        </div>
+        <div class="column is-one-third">
+          <form action="" class="is-flex">
+            <div class="file" style="width: 100%">
+              <label class="file-label" style="width: 100%">
+                <input class="file-input" type="file" name="resume">
+                <span class="file-cta" style="width: 100%">
+                  <span class="file-label">
+                    DataSiswa.csv
+                  </span>
+                </span>
+              </label>
+            </div>
+            <button class="button is-link">Simpan</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="block">
+      <h2 class="subtitle is-4 has-text-weight-bold">Data Siswa</h2>
+      <table class="table is-fullwidth is-bordered">
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>NIS</th>
+            <th>Nama</th>
+            <th>Keterangan</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+
 </html>
