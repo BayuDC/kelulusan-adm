@@ -30,11 +30,10 @@
           <form action="/admin/who" method="post" class="is-flex" enctype="multipart/form-data">
             <div class="file" style="width: 100%">
               <label class="file-label" style="width: 100%">
-                <input class="file-input" type="file" name="file" accept=".csv">
-                <span class="file-cta" style="width: 100%">
-                  <span class="file-label">
-                    DataSiswa.csv
-                  </span>
+                <input class="file-input" type="file" name="file" accept=".csv"
+                  onchange="this.nextElementSibling.textContent = this.files[0]?.name" required>
+                <span id="file" class="file-cta" style="width: 100%">
+                  .csv file
                 </span>
               </label>
             </div>
