@@ -20,6 +20,7 @@ specifiers:
   eslint: ^8.0.1
   eslint-config-prettier: ^8.3.0
   eslint-plugin-prettier: ^4.0.0
+  fastify: ^4.13.0
   handlebars: ^4.7.7
   moment: ^2.29.4
   papaparse: ^5.3.2
@@ -44,6 +45,7 @@ dependencies:
   '@prisma/client': 4.10.1_prisma@4.10.1
   class-transformer: 0.5.1
   class-validator: 0.14.0
+  fastify: 4.13.0
   handlebars: 4.7.7
   moment: 2.29.4
   papaparse: 5.3.2

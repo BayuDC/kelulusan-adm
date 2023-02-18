@@ -18,7 +18,7 @@ export class AppController {
     private readonly prismaService: PrismaService,
   ) {}
 
-  @Get()
+  @Get('/')
   @Render('index.hbs')
   index() {
     return { message: 'Hello world!' };
