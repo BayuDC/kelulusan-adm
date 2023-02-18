@@ -19,6 +19,7 @@ async function bootstrap() {
     return value + 1;
   });
 
+  app.enableCors();
   app.useStaticAssets({
     root: join(__dirname, '..', 'public'),
     prefix: '/',
