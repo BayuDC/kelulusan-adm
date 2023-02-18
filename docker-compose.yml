@@ -1,0 +1,31 @@
+version: '3'  
+
+services:
+  app:
+    container_name: silulus-app
+    image: silulus-app
+    build: 
+      dockerfile: Dockerfile
+    environment:
+      DATABASE_URL: postgresql://postgres:${DATABASE_PASSWORD}@db:5432/silulus?schema=public
+    ports:
+      - 80:3000
+    volumes:
+      - ./data:/app/data
+      - ./public:/app/public
+    depends_on:
+      - web
+  web:
+    container_name: silulus-db
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_DB: silulus
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+    volumes:
+      - data:/var/lib/postgresql/data
+
+volumes:
+  data:
+    driver: local
+    name: silulus
