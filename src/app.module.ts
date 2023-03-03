@@ -9,9 +9,10 @@ import { AppService } from './app.service';
 import { AdminController } from './admin/admin.controller';
 import { PrismaService } from './prisma/prisma.service';
 import { AppMiddleware } from './app.middleware';
+import { AdminModule } from './admin/admin.module';
 
 @Module({
-  imports: [],
+  imports: [AdminModule],
   controllers: [AppController, AdminController],
   providers: [AppService, PrismaService],
 })

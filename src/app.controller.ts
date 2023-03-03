@@ -8,6 +8,7 @@ import {
   ImATeapotException,
   NotFoundException,
   UnauthorizedException,
+  HttpCode,
 } from '@nestjs/common';
 import { AppService } from './app.service';
 import moment from 'moment';
@@ -48,6 +49,7 @@ export class AppController {
   }
 
   @Post('/me')
+  @HttpCode(200)
   async me(@Body() body: Record<string, string>) {
     const now = moment(new Date());
     const end = moment(this.appService.getConfig().date);
