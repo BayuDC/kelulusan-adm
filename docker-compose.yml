@@ -1,7 +1,8 @@
 version: '3'  
 
 services:
-  app:
+  srv:
+    &srv
     container_name: silulus-app
     image: silulus-app
     build: 
@@ -17,7 +18,13 @@ services:
       - ./public:/app/public
     depends_on:
       - web
-  web:
+  # ! Uncomment to duplicate
+  # srv2:
+  #   <<: *srv
+  #   container_name: silulus-app-2
+  #   ports:
+  #     - 81:3000
+  db:
     container_name: silulus-db
     image: postgres:15-alpine
     environment:

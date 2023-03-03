@@ -22,12 +22,6 @@ export class AppController {
     private readonly prismaService: PrismaService,
   ) {}
 
-  @Get('/')
-  @Render('index.hbs')
-  index() {
-    return { message: 'Hello world!' };
-  }
-
   @Get('/info')
   info() {
     const now = moment(new Date());
