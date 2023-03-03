@@ -11,10 +11,12 @@ specifiers:
   '@nestjs/platform-fastify': ^9.3.8
   '@nestjs/schematics': ^9.0.0
   '@prisma/client': ^4.10.1
+  '@types/bcryptjs': ^2.4.2
   '@types/node': 18.11.18
   '@types/papaparse': ^5.3.7
   '@typescript-eslint/eslint-plugin': ^5.0.0
   '@typescript-eslint/parser': ^5.0.0
+  bcryptjs: ^2.4.3
   class-transformer: ^0.5.1
   class-validator: ^0.14.0
   eslint: ^8.0.1
@@ -43,6 +45,7 @@ dependencies:
   '@nestjs/core': 9.3.8_6sysrfnceog466mrogtvxnbmxe
   '@nestjs/platform-fastify': 9.3.8_mga2476k3fojbjwolrmhyv5n2q
   '@prisma/client': 4.10.1_prisma@4.10.1
+  bcryptjs: 2.4.3
   class-transformer: 0.5.1
   class-validator: 0.14.0
   fastify: 4.13.0
@@ -55,6 +58,7 @@ dependencies:
 devDependencies:
   '@nestjs/cli': 9.2.0
   '@nestjs/schematics': 9.0.4_typescript@4.9.5
+  '@types/bcryptjs': 2.4.2
   '@types/node': 18.11.18
   '@types/papaparse': 5.3.7
   '@typescript-eslint/eslint-plugin': 5.51.0_z4swst3wuuqk4hlme4ajzslgh4
@@ -624,6 +628,10 @@ packages:
     resolution: {integrity: sha512-yOlFc+7UtL/89t2ZhjPvvB/DeAr3r+Dq58IgzsFkOAvVC6NMJXmCGjbptdXdR9qsX7pKcTL+s87FtYREi2dEEQ==}
     dev: true
 
+  /@types/bcryptjs/2.4.2:
+    resolution: {integrity: sha512-LiMQ6EOPob/4yUL66SZzu6Yh77cbzJFYll+ZfaPiPPFswtIlA/Fs1MzdKYA7JApHU49zQTbJGX3PDmCpIdDBRQ==}
+    dev: true
+
   /@types/eslint-scope/3.7.4:
     resolution: {integrity: sha512-9K4zoImiZc3HlIp6AVUDE4CWYx22a+lhSZMYNpbjW04+YF0KWj4pJXnEMjdnFTiQibFFmElcsasJXDbdI/EPhA==}
     dependencies:
@@ -1066,6 +1074,10 @@ packages:
 
   /base64-js/1.5.1:
     resolution: {integrity: sha512-AKpaYlHn8t4SVbOHCy+b5+KKgvR4vrsD8vbvrbiQJps7fKDTkjkDry6ji0rUJjC0kzbNePLwzxq8iypo41qeWA==}
+
+  /bcryptjs/2.4.3:
+    resolution: {integrity: sha512-V/Hy/X9Vt7f3BbPJEi8BdVFMByHi+jNXrYkW3huaybV/kQ0KJg0Y6PkEMbn+zeT+i+SiKZ/HMqJGIIt4LZDqNQ==}
+    dev: false
 
   /binary-extensions/2.2.0:
     resolution: {integrity: sha512-jDctJ/IVQbZoJykoeHbhXpOlNBqGNcwXJKJog42E5HDPUwQTSdjCHdihjj0DlnheQ7blbT6dHOafNAiS8ooQKA==}

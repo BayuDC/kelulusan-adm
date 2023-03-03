@@ -1,14 +1,17 @@
 import {
-  Controller,
   Get,
+  Post,
+  Body,
+  Render,
+  Controller,
   GoneException,
   ImATeapotException,
   NotFoundException,
-  Query,
-  Render,
+  UnauthorizedException,
 } from '@nestjs/common';
 import { AppService } from './app.service';
 import moment from 'moment';
+import bcrypt from 'bcryptjs';
 import { PrismaService } from './prisma/prisma.service';
 
 @Controller()
@@ -44,8 +47,8 @@ export class AppController {
     };
   }
 
-  @Get('/me')
-  async me(@Query() query: Record<string, string>) {
+  @Post('/me')
+  async me(@Body() body: Record<string, string>) {
     const now = moment(new Date());
     const end = moment(this.appService.getConfig().date);
     const diff = moment.duration(end.diff(now));
@@ -53,7 +56,8 @@ export class AppController {
       throw new ImATeapotException();
     }
 
-    const nis: string = query.nis;
+    const nis: string = body.nis;
+    const passwd: string = body.passwd || '';
     if (!nis) {
       throw new NotFoundException();
     }
@@ -65,6 +69,12 @@ export class AppController {
       throw new NotFoundException();
     }
 
+    const verified = await bcrypt.compare(passwd, student.passwd);
+    if (!verified) {
+      throw new UnauthorizedException();
+    }
+
+    delete student.passwd;
     return { student };
   }
 }

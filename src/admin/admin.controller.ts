@@ -16,6 +16,7 @@ import { parse } from 'papaparse';
 import { AppService } from '../app.service';
 import { UpdateTimeDto } from './dto/update-time.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
+import bcrypt from 'bcryptjs';
 
 @Controller('admin')
 export class AdminController {
@@ -55,7 +56,7 @@ export class AdminController {
           data: {
             nis: student[0],
             name: student[1],
-            passwd: student[2],
+            passwd: await bcrypt.hash(student[2], await bcrypt.genSalt()),
             graduate: student[3] == '1',
           },
         }),
