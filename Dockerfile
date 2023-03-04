@@ -10,6 +10,8 @@ RUN pnpm i --frozen-lockfile
 
 COPY . .
 
-RUN pnpm build
+RUN pnpm build && pnpm prepare
+
+RUN pnpm prune --prod
 
 CMD ["pm2-runtime", "/app/dist/main.js"]

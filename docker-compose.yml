@@ -1,11 +1,11 @@
-version: '3'  
+version: '3'
 
 services:
   srv:
     &srv
     container_name: silulus-app
     image: silulus-app
-    build: 
+    build:
       dockerfile: Dockerfile
     environment:
       DATABASE_URL: postgresql://postgres:${DATABASE_PASSWORD}@db:5432/silulus?schema=public
@@ -17,13 +17,25 @@ services:
       - ./data:/app/data
       - ./public:/app/public
     depends_on:
-      - web
+      - db
   # ! Uncomment to duplicate
   # srv2:
   #   <<: *srv
   #   container_name: silulus-app-2
   #   ports:
   #     - 81:3000
+  gen:
+    profiles:
+      - migrate
+    container_name: silulus-gen
+    image: silulus-gen
+    build:
+      dockerfile: Dockerfile.prisma
+    environment:
+      DATABASE_URL: postgresql://postgres:${DATABASE_PASSWORD}@db:5432/silulus?schema=public
+    depends_on:
+      - db
+
   db:
     container_name: silulus-db
     image: postgres:15-alpine
