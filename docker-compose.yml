@@ -35,6 +35,8 @@ services:
       DATABASE_URL: postgresql://postgres:${DATABASE_PASSWORD}@db:5432/silulus?schema=public
     depends_on:
       - db
+    volumes:
+      - ./prisma:/app/prisma
 
   db:
     container_name: silulus-db
