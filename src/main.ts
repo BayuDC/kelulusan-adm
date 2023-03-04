@@ -4,7 +4,7 @@ import {
   NestFastifyApplication,
   FastifyAdapter,
 } from '@nestjs/platform-fastify';
-import fastyfyMultipart from '@fastify/multipart';
+import fastifyMultipart from '@fastify/multipart';
 import Handlebars from 'handlebars';
 import { AppModule } from './app.module';
 import { join } from 'path';
@@ -31,7 +31,7 @@ async function bootstrap() {
     templates: join(__dirname, '..', 'views'),
   });
   app.useGlobalPipes(new ValidationPipe());
-  app.register(fastyfyMultipart);
+  app.register(fastifyMultipart);
 
   await app.listen(3000, '0.0.0.0');
 }

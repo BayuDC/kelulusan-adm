@@ -10,6 +10,7 @@ import { AdminController } from './admin/admin.controller';
 import { PrismaService } from './prisma/prisma.service';
 import { AppMiddleware } from './app.middleware';
 import { AdminModule } from './admin/admin.module';
+import { LoggerMiddleware } from './logger/logger.middleware';
 
 @Module({
   imports: [AdminModule],
@@ -18,6 +19,10 @@ import { AdminModule } from './admin/admin.module';
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
+    consumer.apply(LoggerMiddleware).forRoutes({
+      path: '*',
+      method: RequestMethod.ALL,
+    });
     consumer
       .apply(AppMiddleware)
       .forRoutes(
