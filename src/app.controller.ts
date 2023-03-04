@@ -28,13 +28,13 @@ export class AppController {
     const end = moment(this.appService.getConfig().date);
     const diff = moment.duration(end.diff(now));
 
-    if (diff.milliseconds() < 0) {
+    if (diff.asMilliseconds() < 0) {
       throw new GoneException();
     }
 
     return {
       time: {
-        day: diff.days(),
+        day: Math.floor(diff.asDays()),
         hour: diff.hours(),
         minute: diff.minutes(),
         second: diff.seconds(),
@@ -48,7 +48,7 @@ export class AppController {
     const now = moment(new Date());
     const end = moment(this.appService.getConfig().date);
     const diff = moment.duration(end.diff(now));
-    if (diff.milliseconds() > 0) {
+    if (diff.asMilliseconds() > 0) {
       throw new ImATeapotException();
     }
 
