@@ -48,7 +48,7 @@ services:
     volumes:
       - data:/var/lib/postgresql/data
   db2:
-    container_name: silulus-db
+    container_name: silulus-db-2
     image: redis:6.0-alpine
     volumes:
       - data2:/data
