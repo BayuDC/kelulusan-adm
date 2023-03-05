@@ -29,15 +29,15 @@ export class AdminController {
   @Render('admin.hbs')
   async index() {
     return {
-      date: this.appService.getConfig().date,
+      date: await this.appService.getDate(),
       students: await this.prismaService.student.findMany(),
     };
   }
 
   @Post('/when')
   @Redirect('/admin')
-  updateDate(@Body() body: UpdateTimeDto) {
-    this.appService.setConfig({ date: body.date });
+  async updateDate(@Body() body: UpdateTimeDto) {
+    await this.appService.setDate(body.date);
   }
 
   @Post('/who')

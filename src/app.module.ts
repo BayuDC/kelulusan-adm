@@ -4,6 +4,7 @@ import {
   NestModule,
   RequestMethod,
 } from '@nestjs/common';
+import { RedisModule } from '@liaoliaots/nestjs-redis';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AdminController } from './admin/admin.controller';
@@ -13,7 +14,14 @@ import { AdminModule } from './admin/admin.module';
 import { LoggerMiddleware } from './logger/logger.middleware';
 
 @Module({
-  imports: [AdminModule],
+  imports: [
+    AdminModule,
+    RedisModule.forRoot({
+      config: {
+        url: process.env.REDIS_URL || 'redis://localhost:6379',
+      },
+    }),
+  ],
   controllers: [AppController, AdminController],
   providers: [AppService, PrismaService],
 })

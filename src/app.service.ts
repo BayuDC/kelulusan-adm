@@ -1,30 +1,15 @@
+import { InjectRedis } from '@liaoliaots/nestjs-redis';
 import { Injectable } from '@nestjs/common';
-
-import { writeFileSync, readFileSync } from 'fs';
-import { join } from 'path';
-
-interface Config {
-  date?: string;
-}
+import { Redis } from 'ioredis';
 
 @Injectable()
 export class AppService {
-  configPath: string;
-  config: Config;
+  constructor(@InjectRedis() private readonly redis: Redis) {}
 
-  constructor() {
-    this.configPath = join(__dirname, '..', 'data', 'config.json');
-
-    const json = readFileSync(this.configPath, 'utf-8');
-    this.config = JSON.parse(json) as unknown as Config;
+  async getDate(): Promise<string> {
+    return await this.redis.get('date');
   }
-
-  getConfig(): Config {
-    return this.config;
-  }
-  setConfig(config: Config): void {
-    this.config = config;
-    const json = JSON.stringify(config, null, 2);
-    writeFileSync(this.configPath, json, 'utf-8');
+  async setDate(date: string) {
+    await this.redis.set('date', date);
   }
 }

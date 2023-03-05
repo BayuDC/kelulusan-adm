@@ -10,8 +10,12 @@ import { AppService } from './app.service';
 export class AppMiddleware implements NestMiddleware {
   constructor(private readonly appService: AppService) {}
 
-  use(req: FastifyRequest['raw'], res: FastifyReply['raw'], next: () => void) {
-    if (!this.appService.getConfig().date) {
+  async use(
+    req: FastifyRequest['raw'],
+    res: FastifyReply['raw'],
+    next: () => void,
+  ) {
+    if (!(await this.appService.getDate())) {
       throw new ServiceUnavailableException();
     }
 

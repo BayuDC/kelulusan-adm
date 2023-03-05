@@ -23,9 +23,9 @@ export class AppController {
   ) {}
 
   @Get('/info')
-  info() {
+  async info() {
     const now = moment(new Date());
-    const end = moment(this.appService.getConfig().date);
+    const end = moment(await this.appService.getDate());
     const diff = moment.duration(end.diff(now));
 
     if (diff.asMilliseconds() < 0) {
@@ -46,7 +46,7 @@ export class AppController {
   @HttpCode(200)
   async me(@Body() body: Record<string, string>) {
     const now = moment(new Date());
-    const end = moment(this.appService.getConfig().date);
+    const end = moment(await this.appService.getDate());
     const diff = moment.duration(end.diff(now));
     if (diff.asMilliseconds() > 0) {
       throw new ImATeapotException();
